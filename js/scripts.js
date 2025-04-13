@@ -52,3 +52,43 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Don't give to redirect page
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const email = formData.get("email").trim();
+    const message = formData.get("phone").trim();
+
+    const successMessage = document.getElementById("submitSuccessMessage");
+    const errorMessage = document.getElementById("submitErrorMessage");
+
+    successMessage.classList.add("d-none");
+    errorMessage.classList.add("d-none");
+
+    if (!email || !phone) {
+        errorMessage.classList.remove("d-none");
+        return;
+    }
+
+    fetch("https://getform.io/f/bwnqkvma", {
+        method: "POST",
+        body: formData
+    })
+
+    .then(response => {
+        if (response.ok) {
+            successMessage.classList.remove("d-none");
+            form.reset();
+        } else {
+            alert("Błąd wysyłania wiadomości!");
+        }
+    })
+    .catch(error => {
+        console.error("Ошибка:", error);
+        alert("Błąd podczas wysyłania.");
+    });
+});
