@@ -185,7 +185,7 @@ address {
 
 ol,
 ul {
-  padding-left: 2rem;
+  padding-left: 15rem;
 }
 
 ol,
@@ -564,7 +564,7 @@ progress {
 }
 
 .list-inline {
-  padding-left: 0;
+  padding-left: 10;
   list-style-type: disc;
   text-align: left;
 }
